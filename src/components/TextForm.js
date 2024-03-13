@@ -4,23 +4,61 @@ import PropTypes from 'prop-types'
 export default function TextForm(props){
 
     const handleClickUpper = () => {
-        console.log("Uppercase was clicked" )
+        
         let newTExt = text.toUpperCase()
         setText(newTExt)
+        console.log("Uppercase was clicked" )
+    }
+
+    const handleClickPython = () => {
+
+        let N_list = text.split("\n")
+        let list  = text.split(" ")
+        var files = []
+
+        for (let item of list) {
+            if (item.toLowerCase().endsWith('.py')){
+
+                console.log("Python file  was detected" )
+                files.push(item)
+            }
+
+        }
+        for (let item of N_list) {
+            if (item.toLowerCase().endsWith('.py')){
+
+                console.log("Python file  was detected" )
+                files.push(item)
+            }
+
+        }
+
+        let string = ""
+        for (let item of files) {
+            string = string + item + "\n"
+        }
+        setText(string)
     }
 
     const handleClickLower = () => {
-        console.log("Lowercase was clicked" )
+        
         let newTExt = text.toLowerCase()
         setText(newTExt)
+        console.log("Lowercase was clicked" )
+    }
+
+    const handleClickClear = () => {
+        
+        let newTExt = ''
+        setText(newTExt)
+        console.log("Clear was clicked" )
     }
 
     const handleOnChange = (event) => {
-        console.log("New")
         setText(event.target.value)
     }
 
-    const [text, setText] = useState("Enter the text here")
+    const [text, setText] = useState("");
     return(
         <>
 
@@ -32,20 +70,31 @@ export default function TextForm(props){
                 <textarea className="form-control" id="text" rows="10" value = {text} onChange={handleOnChange}></textarea>
                 </div>
                 <div>
-                <button className="btn btn-primary mx - 4" onClick={handleClickUpper}>
+                <button className="btn btn-primary mx-2" onClick={handleClickUpper}>
                     TO upper case
                 </button>
             
-                <button className="btn btn-primary" onClick={handleClickLower}>
+                <button className="btn btn-primary mx-4" onClick={handleClickLower}>
                     TO lower case
+                </button>
+
+                <button className="btn btn-primary mx-4" onClick={handleClickClear}>
+                    Clear
+                </button>
+
+                <button className="btn btn-primary mx-2" onClick={handleClickPython}>
+                    Detect Python
                 </button>
         </div>
 
         <div className="container">
-            <h1>Your text Summary here</h1>
+            <h1 className='container'>Your text Summary here</h1>
+            <br/>
+            <strong>
             <p> {text.split(" ").length} words and{text.length} characters</p>
-            <p> {0.1 *text.split(" ").length}  s to read the document</p>
+            <p> {0.1 *text.split(" ").length}  seconds to read the document</p>
             <p>{text.toLowerCase()}</p>
+            </strong>
         </div>
         </>
     )

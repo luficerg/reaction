@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
-
+import TextForm from './components/TextForm';
 
 function App() {
   return (
@@ -8,8 +8,12 @@ function App() {
       <Navbar title = "Navbar " 
       first = "Home" 
       second = "About me"/>
-
-      {/* <Navbar/> */}
+      
+      <div className="container">
+        {/* <Navbar/> */}
+        <TextForm heading = "Analyze the Endurance Spin"/>
+      </div>
+      
     </>
     
   )
